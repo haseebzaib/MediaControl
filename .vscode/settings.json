@@ -1,0 +1,10 @@
+{
+    "C_Cpp.intelliSenseEngine": "default",
+    "idf.espIdfPathWin": "c:\\Users\\hzaib\\Documents\\esp\\esp-idf",
+    "idf.openOcdConfigs": [
+        "board/esp32-bridge.cfg"
+    ],
+    "idf.portWin": "COM14",
+    "idf.toolsPathWin": "c:\\Users\\hzaib\\Documents\\esp",
+    "idf.flashType": "UART"
+}
