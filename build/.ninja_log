@@ -1202,3 +1202,240 @@
 6907	7230	7560674843770531	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
 7231	7351	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
 7231	7351	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+78	366	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+78	366	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+78	366	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+78	366	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+78	366	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+78	366	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+78	366	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+78	366	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+86	526	7560679260788647	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+527	598	7560679261441518	esp-idf/main/libmain.a	ca6a5211e0352b60
+599	3534	7560679290659256	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+599	3534	7560679290659256	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+3535	6766	7560679322834107	MediaControl.elf	b095d963d6a27e0a
+6766	7171	7560679327227768	.bin_timestamp	e36ebc0ee34a81b
+6766	7171	7560679327227768	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+7172	7338	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+7172	7338	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+76	268	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+76	268	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+76	268	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+76	268	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+76	268	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+76	268	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+76	268	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+76	268	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+83	522	7560680975711051	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+522	588	7560680976424483	esp-idf/main/libmain.a	ca6a5211e0352b60
+588	3079	7560681001122588	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+588	3079	7560681001122588	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+3079	6245	7560681032655604	MediaControl.elf	b095d963d6a27e0a
+6246	6609	7560681036555497	.bin_timestamp	e36ebc0ee34a81b
+6246	6609	7560681036555497	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+6612	6729	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+6612	6729	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+68	269	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+68	269	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+68	269	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+68	269	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+68	269	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+68	269	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+68	269	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+68	269	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+72	268	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+72	268	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+72	268	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+72	268	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+72	268	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+72	268	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+72	268	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+72	268	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+81	508	7560684660505092	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+509	573	7560684661297664	esp-idf/main/libmain.a	ca6a5211e0352b60
+574	3707	7560684691997111	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+574	3707	7560684691997111	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+3707	6873	7560684724061043	MediaControl.elf	b095d963d6a27e0a
+6873	7184	7560684727393267	.bin_timestamp	e36ebc0ee34a81b
+6873	7184	7560684727393267	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+7184	7301	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+7184	7301	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+75	356	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+75	356	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+75	356	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+75	356	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+75	356	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+75	356	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+75	356	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+75	356	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+83	541	7560686409110793	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+541	625	7560686409939588	esp-idf/main/libmain.a	ca6a5211e0352b60
+625	3606	7560686439453739	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+625	3606	7560686439453739	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+3606	6852	7560686471885373	MediaControl.elf	b095d963d6a27e0a
+6853	7198	7560686475531309	.bin_timestamp	e36ebc0ee34a81b
+6853	7198	7560686475531309	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+7199	7330	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+7199	7330	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+89	580	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+89	580	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+89	580	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+89	580	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+89	580	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+89	580	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+89	580	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+89	580	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+101	618	7560694757842463	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+619	767	7560694759387401	esp-idf/main/libmain.a	ca6a5211e0352b60
+767	4537	7560694796813443	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+767	4537	7560694796813443	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+4537	8038	7560694831705270	MediaControl.elf	b095d963d6a27e0a
+8039	8420	7560694835900594	.bin_timestamp	e36ebc0ee34a81b
+8039	8420	7560694835900594	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+8421	8544	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+8421	8544	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+120	599	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+120	599	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+120	599	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+120	599	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+120	599	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+120	599	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+120	599	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+120	599	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+134	986	7560701649747558	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+987	1101	7560701650843690	esp-idf/main/libmain.a	ca6a5211e0352b60
+1101	5201	7560701691603878	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+1101	5201	7560701691603878	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+5201	9534	7560701734728804	MediaControl.elf	b095d963d6a27e0a
+9535	10013	7560701740067112	.bin_timestamp	e36ebc0ee34a81b
+9535	10013	7560701740067112	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+10014	10222	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+10014	10222	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+143	546	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+143	546	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+143	546	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+143	546	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+143	546	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+143	546	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+143	546	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+143	546	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+157	934	7560704864489055	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+935	1044	7560704865581046	esp-idf/main/libmain.a	ca6a5211e0352b60
+1045	5236	7560704907200429	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+1045	5236	7560704907200429	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+5236	9896	7560704953733466	MediaControl.elf	b095d963d6a27e0a
+9896	10487	7560704960024134	.bin_timestamp	e36ebc0ee34a81b
+9896	10487	7560704960024134	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+10488	10691	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+10488	10691	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+124	472	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+124	472	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+124	472	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+124	472	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+124	472	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+124	472	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+124	472	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+124	472	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+139	846	7560707389146465	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+847	967	7560707390402524	esp-idf/main/libmain.a	ca6a5211e0352b60
+968	4245	7560707423137666	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+968	4245	7560707423137666	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+4246	8473	7560707465220108	MediaControl.elf	b095d963d6a27e0a
+8474	8956	7560707470548179	.bin_timestamp	e36ebc0ee34a81b
+8474	8956	7560707470548179	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+8957	9124	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+8957	9124	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+125	582	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+125	582	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+125	582	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+125	582	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+125	582	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+125	582	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+125	582	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+125	582	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+138	824	7560710574824418	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+825	994	7560710576873417	esp-idf/main/libmain.a	ca6a5211e0352b60
+995	5022	7560710616960224	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+995	5022	7560710616960224	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+5022	9251	7560710659242088	MediaControl.elf	b095d963d6a27e0a
+9252	9754	7560710664605600	.bin_timestamp	e36ebc0ee34a81b
+9252	9754	7560710664605600	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+9755	9942	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+9755	9942	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+110	421	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+110	421	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+110	421	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+110	421	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+110	421	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+110	421	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+110	421	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+110	421	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+102	758	7560711883696865	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+759	854	7560711884878232	esp-idf/main/libmain.a	ca6a5211e0352b60
+854	4085	7560711916734993	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+854	4085	7560711916734993	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+4086	8392	7560711959791961	MediaControl.elf	b095d963d6a27e0a
+8393	8909	7560711965361704	.bin_timestamp	e36ebc0ee34a81b
+8393	8909	7560711965361704	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+8911	9091	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+8911	9091	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+103	408	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+103	408	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+103	408	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+103	408	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+103	408	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+103	408	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+103	408	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+103	408	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+85	364	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+85	364	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+85	364	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+85	364	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+85	364	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+85	364	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+85	364	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+85	364	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+95	636	7560713454821917	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+637	734	7560713455815871	esp-idf/main/libmain.a	ca6a5211e0352b60
+734	3929	7560713487403745	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+734	3929	7560713487403745	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+3929	8177	7560713529815307	MediaControl.elf	b095d963d6a27e0a
+8178	8685	7560713535331530	.bin_timestamp	e36ebc0ee34a81b
+8178	8685	7560713535331530	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+8686	8879	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+8686	8879	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+120	587	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+120	587	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+120	587	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+120	587	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+120	587	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+120	587	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+120	587	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+120	587	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+135	831	7560717263444949	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+831	971	7560717264830971	esp-idf/main/libmain.a	ca6a5211e0352b60
+972	5124	7560717305675902	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+972	5124	7560717305675902	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+5125	9731	7560717351990094	MediaControl.elf	b095d963d6a27e0a
+9732	10231	7560717357413241	.bin_timestamp	e36ebc0ee34a81b
+9732	10231	7560717357413241	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+10232	10417	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+10232	10417	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+113	523	7560665174633379	bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+113	523	7560665174633379	bootloader/bootloader.elf	13ec3798163b0350
+113	523	7560665174633379	bootloader/bootloader.bin	13ec3798163b0350
+113	523	7560665174633379	bootloader/bootloader.map	13ec3798163b0350
+113	523	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	13ec3798163b0350
+113	523	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.elf	13ec3798163b0350
+113	523	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.bin	13ec3798163b0350
+113	523	7560665174633379	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/bootloader/bootloader.map	13ec3798163b0350
+127	862	7560718122085276	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	24bf601666d53aea
+863	983	7560718123393582	esp-idf/main/libmain.a	ca6a5211e0352b60
+983	4895	7560718162215099	esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+983	4895	7560718162215099	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esp_system/ld/sections.ld	29ea1c5dad4c74b6
+4896	9853	7560718211707492	MediaControl.elf	b095d963d6a27e0a
+9854	10343	7560718216998631	.bin_timestamp	e36ebc0ee34a81b
+9854	10343	7560718216998631	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/.bin_timestamp	e36ebc0ee34a81b
+10345	10529	0	esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598
+10345	10529	0	C:/Users/hzaib/Documents/Freelance Projects/zeeshan_zeroAxis/MediaControl/build/esp-idf/esptool_py/CMakeFiles/app_check_size	c59c88ad4d756598

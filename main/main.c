@@ -39,65 +39,118 @@ uint8_t hid_media_descriptor[] = {
     0x09, 0x01,       // Usage (Consumer Control)
     0xA1, 0x01,       // Collection (Application)
 
+    // Report ID 1: Play/Pause
     0x85, 0x01,       // Report ID (1)
-    0x09, 0xB5,       // Usage (Next Track)
-    0x09, 0xB6,       // Usage (Previous Track)
     0x09, 0xCD,       // Usage (Play/Pause)
+    0x15, 0x00,       // Logical Minimum (0)
+    0x25, 0x01,       // Logical Maximum (1)
     0x75, 0x01,       // Report Size (1)
-    0x95, 0x03,       // Report Count (3)
+    0x95, 0x01,       // Report Count (1)
     0x81, 0x02,       // Input (Data,Var,Abs)
-    0x95, 0x05,       // Report Count (5)
+    0x95, 0x07,       // Report Count (7 padding bits)
     0x75, 0x01,       // Report Size (1)
     0x81, 0x03,       // Input (Cnst,Var,Abs)
 
+    // Report ID 2: Next Track, Previous Track, Track from Beginning
     0x85, 0x02,       // Report ID (2)
-    0x09, 0xE9,       // Usage (Volume Up)
-    0x09, 0xEA,       // Usage (Volume Down)
+    0x09, 0xB5,       // Usage (Next Track)
+    0x09, 0xB6,       // Usage (Previous Track)
+    0x09, 0xB7,       // Usage (Track from Beginning)
+    0x15, 0x00,       // Logical Minimum (0)
+    0x25, 0x01,       // Logical Maximum (1)
     0x75, 0x01,       // Report Size (1)
-    0x95, 0x02,       // Report Count (2)
+    0x95, 0x03,       // Report Count (3)
     0x81, 0x02,       // Input (Data,Var,Abs)
-    0x95, 0x06,       // Report Count (6)
+    0x95, 0x05,       // Report Count (5 padding bits)
     0x75, 0x01,       // Report Size (1)
     0x81, 0x03,       // Input (Cnst,Var,Abs)
+
+    // Report ID 3: Volume Control
+    0x85, 0x03,       // Report ID (3)
+    0x09, 0xE9,       // Usage (Volume Up)
+    0x09, 0xEA,       // Usage (Volume Down)
+    0x09, 0xE2,       // Usage (Mute/Unmute)
+    0x15, 0x00,       // Logical Minimum (0)
+    0x25, 0x01,       // Logical Maximum (1)
+    0x75, 0x01,       // Report Size (1)
+    0x95, 0x03,       // Report Count (3)
+    0x81, 0x02,       // Input (Data,Var,Abs)
+    0x95, 0x05,       // Report Count (5 padding bits)
+    0x75, 0x01,       // Report Size (1)
+    0x81, 0x03,       // Input (Cnst,Var,Abs)
+
+    // Report ID 4: Noise Cancellation
+    0x85, 0x04,       // Report ID (4)
+    0x09, 0xC0,       // Usage (Noise Cancellation Toggle)
+    0x15, 0x00,       // Logical Minimum (0)
+    0x25, 0x01,       // Logical Maximum (1)
+    0x75, 0x01,       // Report Size (1)
+    0x95, 0x01,       // Report Count (1)
+    0x81, 0x02,       // Input (Data,Var,Abs)
+    0x95, 0x07,       // Report Count (7 padding bits)
+    0x75, 0x01,       // Report Size (1)
+    0x81, 0x03,       // Input (Cnst,Var,Abs)
+
 
     0xC0              // End Collection
 };
 const int hid_media_descriptor_len = sizeof(hid_media_descriptor);
 
 
-void send_hid_report(uint8_t report_id,uint8_t key) {
+void send_hid_report(uint8_t report_id,uint8_t key,uint32_t delay) {
         xSemaphoreTake(s_local_param.multiMedia_mutex, portMAX_DELAY);
 
   s_local_param.buffer[0] = key;
     s_local_param.buffer[1] = 0;
     esp_bt_hid_device_send_report(ESP_HIDD_REPORT_TYPE_INTRDATA, report_id, REPORT_SIZE, s_local_param.buffer);
-    vTaskDelay(pdMS_TO_TICKS(100)); // Simulate key press duration
+    vTaskDelay(pdMS_TO_TICKS(delay)); // Simulate key press duration
 
     s_local_param.buffer[0]= 0; // Key release
     esp_bt_hid_device_send_report(ESP_HIDD_REPORT_TYPE_INTRDATA, report_id, REPORT_SIZE, s_local_param.buffer);
         xSemaphoreGive(s_local_param.multiMedia_mutex);
 }
 
-void play_pause_media(void) {
-    send_hid_report(1,0xCD); // Play/Pause
+void play_pause_media() {
+   send_hid_report(1, 0xCD,100); // Report ID 5, Play/Pause
 }
 
 void next_track(void) {
-    send_hid_report(1,0xB5); // Next Track
+    send_hid_report(2, 0xB5,100); // Next Track
 }
 
 void previous_track(void) {
-    send_hid_report(1,0xB6); // Previous Track
+    send_hid_report(2, 0xB6,100); // Previous Track
 }
 
+void track_from_beginning(void) {
+    send_hid_report(2, 0xB7,500); // Track from Beginning
+}
+
+
 void volume_up(void) {
-    send_hid_report(2,0xE9); // Volume Up
+    send_hid_report(3, 0xE9,50); // Volume Up
 }
 
 void volume_down(void) {
-    send_hid_report(2,0xEA); // Volume Down
+    send_hid_report(3, 0xEA,50); // Volume Down
 }
 
+void mute() {
+
+    send_hid_report(3, 0xE2,2000); // Mute/Unmute
+
+
+}
+
+
+void toggle_noise_cancellation(void) {
+    send_hid_report(4, 0xC0,100); // Noise Cancellation Toggle
+}
+
+
+void activate_voice_assistant(void) {
+    send_hid_report(1, 0xCD,500); // Voice Assistant Activation
+}
 /**
  * @brief Integrity check of the report ID and report type for GET_REPORT request from HID host.
  *        Boot Protocol Mode requires report ID. For Report Protocol Mode, when the report descriptor
@@ -144,14 +197,40 @@ void multiMedia_task(void *pvParameters)
 
     ESP_LOGI(TAG, "starting");
     for (;;) {
+   
+        //   vTaskDelay(pdMS_TO_TICKS(6000));
+        //        ESP_LOGI(TAG, "Playing media...");
+        // play_pause_media();
+        // vTaskDelay(pdMS_TO_TICKS(6000));
+        //                ESP_LOGI(TAG, "Pausing media...");
+        // play_pause_media();
+        // vTaskDelay(pdMS_TO_TICKS(6000));
+        //                ESP_LOGI(TAG, "Next track media...");
+        // next_track();
+        // vTaskDelay(pdMS_TO_TICKS(6000));
+        //                ESP_LOGI(TAG, "Previous Track media...");
+        // previous_track();
+        // vTaskDelay(pdMS_TO_TICKS(6000));
+        //                ESP_LOGI(TAG, "Track from Begning media...");
+        // track_from_beginning();
+        // vTaskDelay(pdMS_TO_TICKS(6000));
+        //                ESP_LOGI(TAG, "Volume up media...");
+        // volume_up();
+        // vTaskDelay(pdMS_TO_TICKS(6000));
+        //                ESP_LOGI(TAG, "Volume down media...");
+        // volume_down();
+        vTaskDelay(pdMS_TO_TICKS(6000));
+                       ESP_LOGI(TAG, "mute media...");
+        mute();
+        vTaskDelay(pdMS_TO_TICKS(6000));
 
-        ESP_LOGI(TAG, "Playing/Pausing media...");
-        play_pause_media();
-        vTaskDelay(pdMS_TO_TICKS(5000));
+        //                ESP_LOGI(TAG, "noise cancelation media...");
+        // toggle_noise_cancellation();
+        // vTaskDelay(pdMS_TO_TICKS(6000));
+        //                ESP_LOGI(TAG, "voice assistant media...");
+        // activate_voice_assistant();
+        // vTaskDelay(pdMS_TO_TICKS(6000));
 
-        ESP_LOGI(TAG, "Next track...");
-        next_track();
-        vTaskDelay(pdMS_TO_TICKS(5000));
     }
 }
 
