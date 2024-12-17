@@ -14,10 +14,70 @@
 #include "nvs_flash.h"
 #include "esp_gap_bt_api.h"
 #include <string.h>
-
+#include "driver/gpio.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
+
+
+static const char *TAG_ = "BUTTON_PRESS_HANDLER";
+
+
+// Press types
+#define PRESS_TYPE_SINGLE    1
+#define PRESS_TYPE_DOUBLE    2
+#define PRESS_TYPE_TRIPLE    3
+#define PRESS_TYPE_QUADRUPLE 4
+
+
+#define btn1 18
+#define btn2 19
+#define btn3 21
+#define btn4 22
+#define btn5 23
+
+uint8_t  button_array[5] = {
+    btn1,
+    btn2,
+    btn3,
+    btn4,
+    btn5
+};
+
+    uint64_t press_start_time[5] = {0};
+    bool button_was_pressed[5] = {false};
+
+#define BUTTON_DEBOUNCE_DELAY_MS 50      // Debounce delay
+#define BUTTON_PRESS_TIMEOUT_MS 500      // Max time to detect multiple presses
+// GPIO setup
+static void configure_buttons(void) {
+    gpio_config_t io_conf = {
+        .intr_type = GPIO_INTR_DISABLE,
+        .mode = GPIO_MODE_INPUT,
+        .pin_bit_mask = ((1ULL << btn1) |
+                         (1ULL << btn2) |
+                         (1ULL << btn3) |
+                         (1ULL << btn4) |
+                         (1ULL << btn5)),
+        .pull_up_en = GPIO_PULLUP_ENABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+    };
+    gpio_config(&io_conf);
+    //ESP_LOGI(TAG, "GPIO buttons configured.");
+}
+
+// Structure to track button presses
+typedef struct {
+    uint8_t which_button;
+    uint8_t enable;
+    uint8_t press_count;       // Number of presses
+    uint64_t last_press_time;  // Time of the last button press
+} button_press_t;
+
+  button_press_t button_press[5];
+
+
+
 
 #define REPORT_SIZE 2
 
@@ -191,45 +251,176 @@ bool check_report_id_type(uint8_t report_id, uint8_t report_type)
 
 
 
+// Function to handle button presses based on the press count
+static void handle_button_press(button_press_t button_data) {
+    switch (button_data.press_count) {
+        case PRESS_TYPE_SINGLE:
+            ESP_LOGI(TAG_, "Single press detected");
+            switch(button_data.which_button)
+            {
+                case btn1:
+                {
+                    play_pause_media();
+                    break;
+                }
+                case btn2:
+                {
+                    next_track();
+                    break;
+                }
+                case btn3:
+                {
+                    track_from_beginning();
+                    break;
+                }
+                case btn4:
+                {
+                    volume_up();
+                    break;
+                }
+                case btn5:
+                {
+                    volume_down();
+                    break;
+                }
+
+            }
+            
+            break;
+        case PRESS_TYPE_DOUBLE:
+            ESP_LOGI(TAG_, "Double press detected");
+              switch(button_data.which_button)
+            {
+                case btn1:
+                {
+                    mute();
+                    break;
+                }
+                case btn3:
+                {
+                    previous_track();
+                    break;
+                }
+                case btn4:
+                case btn2:
+                case btn5:
+                default:
+                {
+                     ESP_LOGI(TAG_, "Nothing to do"); 
+                }
+
+            }
+            
+            break;
+        case PRESS_TYPE_TRIPLE:
+            ESP_LOGI(TAG_, "Triple press detected");
+                          switch(button_data.which_button)
+            {
+                case btn1:
+                {
+                    toggle_noise_cancellation();
+                    break;
+                }
+                case btn3:
+                case btn4:
+                case btn2:
+                case btn5:
+                default:
+                {
+                     ESP_LOGI(TAG_, "Nothing to do"); 
+                }
+
+            }
+            break;
+        case PRESS_TYPE_QUADRUPLE:
+            ESP_LOGI(TAG_, "Quadruple press detected");
+                                      switch(button_data.which_button)
+            {
+                case btn1:
+                {
+                    activate_voice_assistant();
+                    break;
+                }
+                case btn3:
+                case btn4:
+                case btn2:
+                case btn5:
+                default:
+                {
+                     ESP_LOGI(TAG_, "Nothing to do"); 
+                }
+
+            }
+            break;
+        default:
+            ESP_LOGW(TAG_,"Unhandled button presses");
+            break;
+    }
+}
+
+// Check if a button is pressed (LOW logic level)
+static bool is_button_pressed(gpio_num_t gpio) {
+    return (gpio_get_level(gpio) == 0);
+}
+
+
+static void button_loop(uint8_t index)
+{
+  if (is_button_pressed(button_array[index])) {
+        if (!button_was_pressed[index]) {
+            button_was_pressed[index] = true;
+            press_start_time[index] = xTaskGetTickCount(); // Get current tick count
+             button_press[index].last_press_time = xTaskGetTickCount();
+            button_press[index].press_count++;
+        }
+    } else {
+        if (button_was_pressed[index]) {
+          
+            uint64_t current_time = xTaskGetTickCount(); // Get current tick count
+            button_press[index].enable = 1;
+            button_press[index].last_press_time = current_time;
+              button_was_pressed[index] = false;
+            // // Check if debounce delay has passed
+            // if ((current_time - press_start_time[index]) * portTICK_PERIOD_MS > BUTTON_DEBOUNCE_DELAY_MS) {
+ 
+            // }
+        }
+    }
+
+    // Timeout to determine the press count
+    uint64_t current_time = xTaskGetTickCount();
+    if (button_press[index].enable &&
+        ((current_time - button_press[index].last_press_time) * portTICK_PERIOD_MS > BUTTON_PRESS_TIMEOUT_MS)) {
+          button_press[index].enable = 0;
+        
+        // Process press count
+        button_press[index].which_button = button_array[index];
+        handle_button_press(button_press[index]);
+        ESP_LOGI(TAG_, "Button GPIO %d: %d press detected.", button_array[index], button_press[index].press_count);
+
+        // Reset press count
+        button_press[index].press_count = 0;
+    }
+}
+
+
+
 void multiMedia_task(void *pvParameters)
 {
     const char *TAG = "multiMedia_task";
 
     ESP_LOGI(TAG, "starting");
-    for (;;) {
-   
-        //   vTaskDelay(pdMS_TO_TICKS(6000));
-        //        ESP_LOGI(TAG, "Playing media...");
-        // play_pause_media();
-        // vTaskDelay(pdMS_TO_TICKS(6000));
-        //                ESP_LOGI(TAG, "Pausing media...");
-        // play_pause_media();
-        // vTaskDelay(pdMS_TO_TICKS(6000));
-        //                ESP_LOGI(TAG, "Next track media...");
-        // next_track();
-        // vTaskDelay(pdMS_TO_TICKS(6000));
-        //                ESP_LOGI(TAG, "Previous Track media...");
-        // previous_track();
-        // vTaskDelay(pdMS_TO_TICKS(6000));
-        //                ESP_LOGI(TAG, "Track from Begning media...");
-        // track_from_beginning();
-        // vTaskDelay(pdMS_TO_TICKS(6000));
-        //                ESP_LOGI(TAG, "Volume up media...");
-        // volume_up();
-        // vTaskDelay(pdMS_TO_TICKS(6000));
-        //                ESP_LOGI(TAG, "Volume down media...");
-        // volume_down();
-        vTaskDelay(pdMS_TO_TICKS(6000));
-                       ESP_LOGI(TAG, "mute media...");
-        mute();
-        vTaskDelay(pdMS_TO_TICKS(6000));
 
-        //                ESP_LOGI(TAG, "noise cancelation media...");
-        // toggle_noise_cancellation();
-        // vTaskDelay(pdMS_TO_TICKS(6000));
-        //                ESP_LOGI(TAG, "voice assistant media...");
-        // activate_voice_assistant();
-        // vTaskDelay(pdMS_TO_TICKS(6000));
+    configure_buttons();
+    for (;;) {
+
+
+
+for(int i = 0; i < 5 ; i++)
+    {
+           button_loop(i);
+    }
+        vTaskDelay(pdMS_TO_TICKS(100)); // Polling interval
 
     }
 }
