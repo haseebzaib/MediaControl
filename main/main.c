@@ -13,6 +13,7 @@
 #include "nvs.h"
 #include "nvs_flash.h"
 #include "esp_gap_bt_api.h"
+#include "esp_hf_client_api.h"
 #include <string.h>
 #include "driver/gpio.h"
 #include "freertos/FreeRTOS.h"
@@ -21,7 +22,11 @@
 
 
 static const char *TAG_ = "BUTTON_PRESS_HANDLER";
+static void bt_app_hf_client_cb(esp_hf_client_cb_event_t event, esp_hf_client_cb_param_t *param);
 
+uint8_t dont_start_btn_switch = 0;
+uint8_t call_state = 0;
+int8_t call_type_connected_incoming = -1; //incoming = 0; connected = 1;
 
 // Press types
 #define PRESS_TYPE_SINGLE    1
@@ -79,7 +84,7 @@ typedef struct {
 
 
 
-#define REPORT_SIZE 2
+#define REPORT_SIZE 1
 
 typedef struct {
     esp_hidd_app_param_t app_param;
@@ -139,17 +144,30 @@ uint8_t hid_media_descriptor[] = {
     0x75, 0x01,       // Report Size (1)
     0x81, 0x03,       // Input (Cnst,Var,Abs)
 
-    // Report ID 4: Noise Cancellation
-    0x85, 0x04,       // Report ID (4)
-    0x09, 0xC0,       // Usage (Noise Cancellation Toggle)
-    0x15, 0x00,       // Logical Minimum (0)
-    0x25, 0x01,       // Logical Maximum (1)
-    0x75, 0x01,       // Report Size (1)
-    0x95, 0x01,       // Report Count (1)
-    0x81, 0x02,       // Input (Data,Var,Abs)
-    0x95, 0x07,       // Report Count (7 padding bits)
-    0x75, 0x01,       // Report Size (1)
-    0x81, 0x03,       // Input (Cnst,Var,Abs)
+    // // Report ID 4: Noise Cancellation
+    // 0x85, 0x04,       // Report ID (4)
+    // 0x09, 0xC0,       // Usage (Noise Cancellation Toggle)
+    // 0x15, 0x00,       // Logical Minimum (0)
+    // 0x25, 0x01,       // Logical Maximum (1)
+    // 0x75, 0x01,       // Report Size (1)
+    // 0x95, 0x01,       // Report Count (1)
+    // 0x81, 0x02,       // Input (Data,Var,Abs)
+    // 0x95, 0x07,       // Report Count (7 padding bits)
+    // 0x75, 0x01,       // Report Size (1)
+    // 0x81, 0x03,       // Input (Cnst,Var,Abs)
+
+    // Report ID 4: Noise Cancellation and Power Key
+0x85, 0x04,       // Report ID (4)
+0x09, 0xC0,       // Usage (Noise Cancellation Toggle)
+0x09, 0x30,       // Usage (Power Key)
+0x15, 0x00,       // Logical Minimum (0)
+0x25, 0x01,       // Logical Maximum (1)
+0x75, 0x01,       // Report Size (1 bit per action)
+0x95, 0x02,       // Report Count (2 bits: Noise Cancellation and Power)
+0x81, 0x02,       // Input (Data, Variable, Absolute)
+0x95, 0x06,       // Report Count (6 padding bits)
+0x75, 0x01,       // Report Size (1 bit)
+0x81, 0x03,       // Input (Constant, Variable, Absolute)
 
 
     0xC0              // End Collection
@@ -161,7 +179,7 @@ void send_hid_report(uint8_t report_id,uint8_t key,uint32_t delay) {
         xSemaphoreTake(s_local_param.multiMedia_mutex, portMAX_DELAY);
 
   s_local_param.buffer[0] = key;
-    s_local_param.buffer[1] = 0;
+    //s_local_param.buffer[1] = 0;
     esp_bt_hid_device_send_report(ESP_HIDD_REPORT_TYPE_INTRDATA, report_id, REPORT_SIZE, s_local_param.buffer);
     vTaskDelay(pdMS_TO_TICKS(delay)); // Simulate key press duration
 
@@ -204,13 +222,20 @@ void mute() {
 
 
 void toggle_noise_cancellation(void) {
-    send_hid_report(4, 0xC0,100); // Noise Cancellation Toggle
+    send_hid_report(4, 0x01,100); // Noise Cancellation Toggle
 }
 
 
 void activate_voice_assistant(void) {
     send_hid_report(1, 0xCD,500); // Voice Assistant Activation
 }
+
+
+void wake_or_sleep_screen()
+{
+       send_hid_report(4, 0x02,100); // Voice Assistant Activation
+}
+
 /**
  * @brief Integrity check of the report ID and report type for GET_REPORT request from HID host.
  *        Boot Protocol Mode requires report ID. For Report Protocol Mode, when the report descriptor
@@ -321,10 +346,21 @@ static void handle_button_press(button_press_t button_data) {
                     toggle_noise_cancellation();
                     break;
                 }
-                case btn3:
-                case btn4:
-                case btn2:
+
                 case btn5:
+                {
+                    wake_or_sleep_screen();
+                    break;
+                }
+                 
+                  case btn4:
+                {
+                    esp_hf_client_dial(NULL);
+                    break;
+                }
+
+                case btn3:
+                case btn2:
                 default:
                 {
                      ESP_LOGI(TAG_, "Nothing to do"); 
@@ -358,6 +394,58 @@ static void handle_button_press(button_press_t button_data) {
     }
 }
 
+static void handle_call_button_press(button_press_t button_data) {
+       switch(button_data.which_button)
+            {
+                case btn1:
+                {
+                    if(call_type_connected_incoming == 1)
+                    {
+                        esp_hf_client_reject_call();   
+                    }
+                    else if(call_type_connected_incoming == 0)
+                    {
+                        esp_hf_client_answer_call();
+                    }
+                    break;
+                }
+                case btn2:
+                {
+                    if(call_type_connected_incoming == 0)
+                    {
+                        esp_hf_client_reject_call();
+                    }
+                    
+                    break;
+                }
+                case btn3:
+                {
+                    track_from_beginning();
+                    break;
+                }
+                case btn4:
+                {
+                      if(call_type_connected_incoming == 1)
+                    {
+                        volume_up();
+                    }
+                 
+                    break;
+                }
+                case btn5:
+                {
+                      if(call_type_connected_incoming == 1)
+                    {
+                    volume_down();
+                    }
+                    break;
+                }
+
+            }
+}
+
+
+
 // Check if a button is pressed (LOW logic level)
 static bool is_button_pressed(gpio_num_t gpio) {
     return (gpio_get_level(gpio) == 0);
@@ -366,6 +454,8 @@ static bool is_button_pressed(gpio_num_t gpio) {
 
 static void button_loop(uint8_t index)
 {
+    if(call_state == 0 || button_array[index] == btn5)
+    {
   if (is_button_pressed(button_array[index])) {
         if (!button_was_pressed[index]) {
             button_was_pressed[index] = true;
@@ -401,6 +491,15 @@ static void button_loop(uint8_t index)
         // Reset press count
         button_press[index].press_count = 0;
     }
+    }
+    else {
+
+         if (is_button_pressed(button_array[index])) {
+      button_press[index].which_button = button_array[index];
+        handle_call_button_press(button_press[index]);
+     }
+    }
+
 }
 
 
@@ -409,19 +508,25 @@ void multiMedia_task(void *pvParameters)
 {
     const char *TAG = "multiMedia_task";
 
-    ESP_LOGI(TAG, "starting");
+   
 
     configure_buttons();
+   // vTaskDelay(pdMS_TO_TICKS(3000)); // Polling interval
+  //  dont_start_btn_switch = 1;
+    ESP_LOGI(TAG, "starting");
     for (;;) {
 
 
 
-for(int i = 0; i < 5 ; i++)
+   for(int i = 0; i < 5 ; i++)
     {
            button_loop(i);
     }
-        vTaskDelay(pdMS_TO_TICKS(100)); // Polling interval
+       
 
+   
+
+     vTaskDelay(pdMS_TO_TICKS(100)); // Polling interval
     }
 }
 
@@ -575,9 +680,11 @@ void esp_bt_hidd_cb(esp_hidd_cb_event_t event, esp_hidd_cb_param_t *param)
             } else {
                 ESP_LOGE(TAG, "unknown connection status");
             }
+            dont_start_btn_switch = 0;
         } else {
             ESP_LOGE(TAG, "close failed!");
         }
+        
         break;
     case ESP_HIDD_SEND_REPORT_EVT:
         if (param->send_report.status == ESP_HIDD_SUCCESS) {
@@ -650,6 +757,7 @@ void esp_bt_hidd_cb(esp_hidd_cb_event_t event, esp_hidd_cb_param_t *param)
     }
 }
 
+
 void app_main(void)
 {
     const char *TAG = "app_main";
@@ -716,10 +824,14 @@ void app_main(void)
     // Report Protocol Mode is the default mode, according to Bluetooth HID specification
     s_local_param.protocol_mode = ESP_HIDD_REPORT_MODE;
 
-    ESP_LOGI(TAG, "register hid device callback");
+    ESP_LOGI(TAG, "register hid device callback and HF device callback");
     esp_bt_hid_device_register_callback(esp_bt_hidd_cb);
+              esp_hf_client_register_callback(bt_app_hf_client_cb);
 
-    ESP_LOGI(TAG, "starting hid device");
+    ESP_LOGI(TAG, "starting hid device and HF device");
+
+
+        esp_hf_client_init();
     esp_bt_hid_device_init();
 
 #if (CONFIG_BT_SSP_ENABLED == true)
@@ -739,4 +851,204 @@ void app_main(void)
 
     print_bt_address();
     ESP_LOGI(TAG, "exiting");
+}
+
+
+
+const char *c_hf_evt_str[] = {
+    "CONNECTION_STATE_EVT",              /*!< connection state changed event */
+    "AUDIO_STATE_EVT",                   /*!< audio connection state change event */
+    "VR_STATE_CHANGE_EVT",                /*!< voice recognition state changed */
+    "CALL_IND_EVT",                      /*!< call indication event */
+    "CALL_SETUP_IND_EVT",                /*!< call setup indication event */
+    "CALL_HELD_IND_EVT",                 /*!< call held indicator event */
+    "NETWORK_STATE_EVT",                 /*!< network state change event */
+    "SIGNAL_STRENGTH_IND_EVT",           /*!< signal strength indication event */
+    "ROAMING_STATUS_IND_EVT",            /*!< roaming status indication event */
+    "BATTERY_LEVEL_IND_EVT",             /*!< battery level indication event */
+    "CURRENT_OPERATOR_EVT",              /*!< current operator name event */
+    "RESP_AND_HOLD_EVT",                 /*!< response and hold event */
+    "CLIP_EVT",                          /*!< Calling Line Identification notification event */
+    "CALL_WAITING_EVT",                  /*!< call waiting notification */
+    "CLCC_EVT",                          /*!< listing current calls event */
+    "VOLUME_CONTROL_EVT",                /*!< audio volume control event */
+    "AT_RESPONSE",                       /*!< audio volume control event */
+    "SUBSCRIBER_INFO_EVT",               /*!< subscriber information event */
+    "INBAND_RING_TONE_EVT",              /*!< in-band ring tone settings */
+    "LAST_VOICE_TAG_NUMBER_EVT",         /*!< requested number from AG event */
+    "RING_IND_EVT",                      /*!< ring indication event */
+};
+
+// esp_hf_client_connection_state_t
+const char *c_connection_state_str[] = {
+    "disconnected",
+    "connecting",
+    "connected",
+    "slc_connected",
+    "disconnecting",
+};
+
+// esp_hf_client_audio_state_t
+const char *c_audio_state_str[] = {
+    "disconnected",
+    "connecting",
+    "connected",
+    "connected_msbc",
+};
+
+/// esp_hf_vr_state_t
+const char *c_vr_state_str[] = {
+    "disabled",
+    "enabled",
+};
+
+// esp_hf_service_availability_status_t
+const char *c_service_availability_status_str[] = {
+    "unavailable",
+    "available",
+};
+
+// esp_hf_roaming_status_t
+const char *c_roaming_status_str[] = {
+    "inactive",
+    "active",
+};
+
+// esp_hf_client_call_state_t
+const char *c_call_str[] = {
+    "NO call in progress",
+    "call in progress",
+};
+
+// esp_hf_client_callsetup_t
+const char *c_call_setup_str[] = {
+    "NONE",
+    "INCOMING",
+    "OUTGOING_DIALING",
+    "OUTGOING_ALERTING"
+};
+
+// esp_hf_client_callheld_t
+const char *c_call_held_str[] = {
+    "NONE held",
+    "Held and Active",
+    "Held",
+};
+
+// esp_hf_response_and_hold_status_t
+const char *c_resp_and_hold_str[] = {
+    "HELD",
+    "HELD ACCEPTED",
+    "HELD REJECTED",
+};
+
+// esp_hf_client_call_direction_t
+const char *c_call_dir_str[] = {
+    "outgoing",
+    "incoming",
+};
+
+// esp_hf_client_call_state_t
+const char *c_call_state_str[] = {
+    "active",
+    "held",
+    "dialing",
+    "alerting",
+    "incoming",
+    "waiting",
+    "held_by_resp_hold",
+};
+
+// esp_hf_current_call_mpty_type_t
+const char *c_call_mpty_type_str[] = {
+    "single",
+    "multi",
+};
+
+// esp_hf_volume_control_target_t
+const char *c_volume_control_target_str[] = {
+    "SPEAKER",
+    "MICROPHONE"
+};
+
+// esp_hf_at_response_code_t
+const char *c_at_response_code_str[] = {
+    "OK",
+    "ERROR"
+    "ERR_NO_CARRIER",
+    "ERR_BUSY",
+    "ERR_NO_ANSWER",
+    "ERR_DELAYED",
+    "ERR_BLACKLILSTED",
+    "ERR_CME",
+};
+
+// esp_hf_subscriber_service_type_t
+const char *c_subscriber_service_type_str[] = {
+    "unknown",
+    "voice",
+    "fax",
+};
+
+// esp_hf_client_in_band_ring_state_t
+const char *c_inband_ring_state_str[] = {
+    "NOT provided",
+    "Provided",
+};
+
+uint8_t stat;
+
+/* callback for HF_CLIENT */
+static void bt_app_hf_client_cb(esp_hf_client_cb_event_t event, esp_hf_client_cb_param_t *param)
+{
+const char *BT_HF_TAG = "bt_hf_cb";
+
+    if (event <= ESP_HF_CLIENT_RING_IND_EVT) {
+        ESP_LOGI(BT_HF_TAG, "APP HFP event: %s", c_hf_evt_str[event]);
+    } else {
+        ESP_LOGE(BT_HF_TAG, "APP HFP invalid event %d", event);
+    }
+
+if(event == ESP_HF_CLIENT_BSIR_EVT)
+{
+dont_start_btn_switch = 1;
+
+}
+
+if(dont_start_btn_switch){
+
+
+if(event == ESP_HF_CLIENT_CIND_CALL_SETUP_EVT || event == ESP_HF_CLIENT_CIND_SERVICE_AVAILABILITY_EVT)
+ {  
+     if(param->call_setup.status == 1 || param->service_availability.status == 1)
+    {
+          ESP_LOGI(BT_HF_TAG, "call incoming or call is connected or ongoing");
+
+          if(param->call_setup.status == 1 && event == ESP_HF_CLIENT_CIND_CALL_SETUP_EVT)
+          {
+            ESP_LOGI(BT_HF_TAG, "call is picked ");
+                stat = 1;
+                call_type_connected_incoming = 1;
+                return;
+          }
+          call_state = 1;
+          call_type_connected_incoming = 0;
+    }
+
+    if(param->service_availability.status == 0 || param->call_setup.status == 0)
+    {
+        if(stat == 1 && param->service_availability.status == 0 && event == ESP_HF_CLIENT_CIND_SERVICE_AVAILABILITY_EVT)
+          {
+            ESP_LOGI(BT_HF_TAG, "call is ongoging so dont do anything");
+          }
+          else{
+            ESP_LOGI(BT_HF_TAG, "call declines or disconnected or end whatever");
+            stat = 0;
+            call_state = 0;
+            call_type_connected_incoming = -1;
+          }
+    
+    }
+ }
+ }
 }
